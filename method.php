@@ -5,20 +5,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      //$btn= $_POST['submit_1'];
     if(isset($_POST['submit_1']))
     {
-        echo "yes it's logform and it's correct clicked button";
+        echo "good page \n";
           $username = $_POST['username_1'];
           $password = $_POST['password_1'];
          include "connect.php";
 
-      // Check username existence
+                // Check username existence
+                $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
 
-$stmt = $conn->prepare("SELECT * FROM users WHERE username = $username");
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
+                //s for string, the "?" symbol to check with variable in next line code.
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $result = $stmt->get_result();
        
         if ($result->num_rows === 0) {die("Invalid username!");}
          
+
+        
+                // Fetch user data and verify password
+                $user = $result->fetch_assoc();
+
+                if ($password !== $user['password']) {
+                    die("Invalid password!");
+                  }
+
+
+                //Login successful
+               $_SESSION['user_id'] = $user['id']; // Store user ID in session
+               header("Location: dashboard.php"); // Redirect to protected page
+
+               $conn->close();
+
     }
 
 
