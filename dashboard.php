@@ -79,34 +79,40 @@ if(isset($_SESSION['user_id']))
     <p class="paraback" style="text-align: center;">Left Side</p>
     <hr class="hrline"/>
 
-<div id="screen1">
+<div id="screen1" style="overflow-y: auto;height:inherit">
     <p style="padding: 5px;font-size:30px;">Adding New Member Enrollment </p>
     <form>
         <label>Member Name</label>
-        <input type="text" name="mmbr_name"/>
+        <input type="text" name="mmbr_name" required/>
 
         <label>Phone Number</label>
-        <input type="tel"/>
+        <input type="tel" required/>
 
         <label>Date Of Birth</label>
-        <input type="date"/>
+        <input type="date" required/>
 
         <label>Gender :</label>
-        <input type="radio" value="Male" name="gender" id="x1">
-        <label for="x1" style="color: black;">male</label>
-        <input type="radio" value="Female" name="gender" id="x2">
-        <label for="x2" style="color: black;">female</label><br/><br/>
+        
+        <label  style="color: black;">
+            <input type="radio" value="Male" name="gender" required>
+        male</label>
+
+
+        
+        <label style="color: black;">
+            <input type="radio" value="Female" name="gender">
+        female</label><br/><br/>
 
         
         <label>First Time?</label>
-        <select>
+        <select required>
             <option selected disabled hidden></option>
             <option>YES</option>
             <option>NO</option>
         </select><br/><br/>
 
         <label>Duration</label>
-        <select>
+        <select required>
             <option selected disabled hidden></option>
             <option>Day</option>
             <option>Week</option>
