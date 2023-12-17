@@ -15,7 +15,23 @@ if(isset($_SESSION['user_id']))
     <head>
         <title>Welcome To The Dashboard</title>
         <style>
+            .normalbutton
+            {
+             background-color: transparent;
+             border:1px solid #000;
+             padding: 20px;
+             min-width: 50%;
+             cursor: pointer;
+             font-size: 20px;
+             margin: 10px;
+            }
 
+            .normalbutton:hover
+            {
+                background-color: greenyellow;
+            }
+            .paraback{background-color: LightGray;padding: 20px;margin: 0;}
+            .hrline{margin: 0;}
         </style>
     </head>
     <body>
@@ -28,14 +44,44 @@ if(isset($_SESSION['user_id']))
 
 
 <div id="startwork" style="display: none;">
-    <div style="float: right;border:2px dashed #736969;height:80vh;width:27%">
-    <p style="text-align: center;">Right Side</p>
+
+
+
+
+            <!--right side start-->
+    <div style="text-align:center;float: right;border:2px dashed #736969;height:80vh;width:27%">
+    <p class="paraback">Right Side</p>
+    <hr class="hrline"/>
+
+    <button class="normalbutton">Option 1</button><br/>
+    <button class="normalbutton">Option 2</button><br/>
+    <button class="normalbutton">Option 3</button><br/>
+    <button class="normalbutton">Option 4</button><br/>
+    <button class="normalbutton">Option 5</button><br/>
+
     </div>
+            <!--right side end-->
 
 
+
+
+<!-- ------------------------------------------------------------------- -->
+
+
+
+
+            <!--left side start-->
     <div style="float: left;border:1px solid #000;height:80vh;width:67%">
-    <p style="text-align: center;">Left Side</p>
+    <p class="paraback" style="text-align: center;">Left Side</p>
+    <hr class="hrline"/>
     </div>
+            <!--left side end-->
+
+
+
+
+
+
 </div>
 
 <script>
