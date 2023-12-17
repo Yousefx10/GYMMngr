@@ -14,6 +14,9 @@ if(isset($_SESSION['user_id']))
 <html>
     <head>
         <title>Welcome To The Dashboard</title>
+        <style>
+
+        </style>
     </head>
     <body>
 
@@ -25,7 +28,14 @@ if(isset($_SESSION['user_id']))
 
 
 <div id="startwork" style="display: none;">
-great
+    <div style="float: right;border:2px dashed #736969;height:80vh;width:27%">
+    <p style="text-align: center;">Right Side</p>
+    </div>
+
+
+    <div style="float: left;border:1px solid #000;height:80vh;width:67%">
+    <p style="text-align: center;">Left Side</p>
+    </div>
 </div>
 
 <script>
