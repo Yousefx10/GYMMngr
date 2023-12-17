@@ -6,9 +6,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(isset($_POST['submit_1']))
     {
         echo "yes it's logform and it's correct clicked button";
-     //   $name = $_POST['name'];
-       // $email = $_POST['email'];
-      //  $message = $_POST['message'];
+          $username = $_POST['username_1'];
+          $password = $_POST['password_1'];
+         include "connect.php";
+
+      // Check username existence
+
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = $username");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+       
+        if ($result->num_rows === 0) {die("Invalid username!");}
+         
     }
 
 
