@@ -4,8 +4,88 @@ $signed=false;
 
 if(isset($_SESSION['user_id']))
 {
-    if($_SESSION['user_id']!="0")  {$signed=true;}
+    if($_SESSION['user_id']!="0")  
+    {
+        $signed=true;
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            if(isset($_POST['newenroll']))
+            {
+
+
+
+
+
+                echo "saving is on process \n";
+                $mmbr_name = $_POST['mmbr_name'];
+                $mmbr_phone = $_POST['mmbr_phone'];
+                $mmbr_date = $_POST['mmbr_date'];
+                $mmbr_gender = $_POST['mmbr_gender'];
+                $mmber_visit = $_POST['mmber_visit'];
+                $mmber_duration = $_POST['mmber_duration'];
+
+
+
+
+               include "connect.php";
+      
+                      // Check username existence
+                      $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+      
+                      //s for string, the "?" symbol to check with variable in next line code.
+                      $stmt->bind_param("s", $username);
+                      $stmt->execute();
+                      $result = $stmt->get_result();
+             
+              if ($result->num_rows === 0) {die("Invalid username!");}
+               
+      
+              
+                      // Fetch user data and verify password
+                      $user = $result->fetch_assoc();
+      
+                      if ($password !== $user['password']) {
+                          die("Invalid password!");
+                        }
+      
+      
+                      //Login successful
+                      session_start();
+                     $_SESSION['user_id'] = $user['id']; // Store user ID in session
+                     header("Location: dashboard.php"); // Redirect to protected page
+                     $conn->close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        }
+    }
 }
+
 
 
 
@@ -81,38 +161,38 @@ if(isset($_SESSION['user_id']))
 
 <div id="screen1" style="overflow-y: auto;height:inherit">
     <p style="padding: 5px;font-size:30px;">Adding New Member Enrollment </p>
-    <form>
+    <form action="dashboard.php" method="post">
         <label>Member Name</label>
         <input type="text" name="mmbr_name" required/>
 
         <label>Phone Number</label>
-        <input type="tel" required/>
+        <input type="tel" name="mmbr_phone" required/>
 
         <label>Date Of Birth</label>
-        <input type="date" required/>
+        <input type="date" name="mmbr_date" required/>
 
         <label>Gender :</label>
         
         <label  style="color: black;">
-            <input type="radio" value="Male" name="gender" required>
+            <input type="radio" value="Male" name="mmbr_gender" required>
         male</label>
 
 
         
         <label style="color: black;">
-            <input type="radio" value="Female" name="gender">
+            <input type="radio" value="Female" name="mmbr_gender">
         female</label><br/><br/>
 
         
         <label>First Time?</label>
-        <select required>
+        <select name="mmbr_visit" required>
             <option selected disabled hidden></option>
             <option>YES</option>
             <option>NO</option>
         </select><br/><br/>
 
         <label>Duration</label>
-        <select required>
+        <select name="mmbr_duration" required>
             <option selected disabled hidden></option>
             <option>Day</option>
             <option>Week</option>
@@ -122,7 +202,7 @@ if(isset($_SESSION['user_id']))
 
         <p>Required FEES :  </p>
 
-        <input type="submit"/>
+        <input type="submit" name="newenroll"/>
     </form>
 </div>
 <div id="screen2" style="display: none;"></div>
