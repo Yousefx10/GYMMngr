@@ -31,11 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                 //Login successful
+                session_start();
                $_SESSION['user_id'] = $user['id']; // Store user ID in session
                header("Location: dashboard.php"); // Redirect to protected page
-
                $conn->close();
-
     }
 
 
