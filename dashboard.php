@@ -126,7 +126,7 @@ if(isset($_SESSION['user_id']))
     <p class="paraback">Right Side</p>
     <hr class="hrline"/>
 
-    <button class="normalbutton">New enrollment</button><br/>
+    <button class="normalbutton" onclick="update_page('screen1');">New enrollment</button><br/>
     <button class="normalbutton">Sales</button><br/>
     <button class="normalbutton" onclick="update_page('screen3');showOPTION('screen3');">History</button><br/>
     <button class="normalbutton">Check Status</button><br/>
@@ -249,7 +249,7 @@ function showOPTION(rn)
     if(rn=="screen3")
     {
         //$.ajax({ url: 'dashboard.php?doit=true?screen=history' });
-
+        return;
         $.ajax({
         url: 'run.php',
         type: 'post',
