@@ -251,10 +251,19 @@ function showOPTION(rn)
         //$.ajax({ url: 'dashboard.php?doit=true?screen=history' });
 
         $.ajax({
-        url: 'connect.php',
+        url: 'run.php',
         type: 'post',
-        data: { "callFunc1": "1"},
-        success: function(response) { console.log(response); }
+        data: { "showhistory": "1"},
+        success: 
+        function(response) 
+        { 
+            
+            
+            document.getElementById("screen3").innerHTML= (response);
+        
+        
+        
+        }
     });
 
 
