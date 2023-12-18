@@ -24,6 +24,7 @@ if(isset($_SESSION['user_id']))
                 $mmbr_gender = $_POST['mmbr_gender'];
                 $mmber_visit = $_POST['mmbr_visit'];
                 $mmber_duration = $_POST['mmbr_duration'];
+                $mmbr_notes = $_POST['mmbr_notes'];
 
 
 
@@ -31,8 +32,9 @@ if(isset($_SESSION['user_id']))
                include "connect.php";
       
                $currentDate = date("Y-m-d H:i:s");
-               $sql = "INSERT INTO history (nowdate, personalname,personalphone,birthdate,gender,firstvisit,duration)".
-               "VALUES ('$currentDate','$mmbr_name', '$mmbr_phone','$mmbr_date','$mmbr_gender','$mmber_visit','$mmber_duration')";
+               $currentuser =$_SESSION['user_id'] ."," . $_SESSION['user_name'];
+               $sql = "INSERT INTO history (nowdate, personalname,personalphone,birthdate,gender,firstvisit,duration,notes,user)".
+               "VALUES ('$currentDate','$mmbr_name', '$mmbr_phone','$mmbr_date','$mmbr_gender','$mmber_visit','$mmber_duration','$mmbr_notes','$currentuser')";
 
                // Execute the query
                if ($conn->query($sql) === TRUE) {
@@ -128,7 +130,7 @@ if(isset($_SESSION['user_id']))
     <button class="normalbutton">Sales</button><br/>
     <button class="normalbutton">History</button><br/>
     <button class="normalbutton">Check Status</button><br/>
-    <button class="normalbutton">Option 5</button><br/>
+    <button class="normalbutton">Settings</button><br/>
 
     </div>
             <!--right side end-->
@@ -142,11 +144,11 @@ if(isset($_SESSION['user_id']))
 
 
             <!--left side start-->
-    <div style="float: left;border:1px solid #000;height:85vh;width:67%">
+    <div style="overflow-y: auto;float: left;border:1px solid #000;height:85vh;width:67%">
     <p class="paraback" style="text-align: center;">Left Side</p>
     <hr class="hrline"/>
 
-<div id="screen1" style="overflow-y: auto;height:inherit">
+<div id="screen1" style="height:inherit">
     <p style="padding: 5px;font-size:30px;">Adding New Member Enrollment </p>
     <form action="dashboard.php" method="post">
         <label>Member Name</label>
@@ -176,7 +178,7 @@ if(isset($_SESSION['user_id']))
             <option selected disabled hidden></option>
             <option value="1">YES</option>
             <option value="0">NO</option>
-        </select><br/><br/>
+        </select>
 
         <label>Duration</label>
         <select name="mmbr_duration" required>
@@ -185,7 +187,11 @@ if(isset($_SESSION['user_id']))
             <option value="week">Week</option>
             <option value="month">Month</option>
         </select><br/><br/>
-
+            <label>
+                NOTES ABOUT MEMBER :
+                <br/>
+                <textarea name="mmbr_notes"style="width:400px;height:50px;resize:none"></textarea>
+            </label>
 
         <p>Required FEES :  </p>
 
