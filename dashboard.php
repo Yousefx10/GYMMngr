@@ -31,7 +31,8 @@ if(isset($_SESSION['user_id']))
                include "connect.php";
       
                $currentDate = date("Y-m-d H:i:s");
-               $sql = "INSERT INTO history (nowdate, personalname,personalphone,birthdate,gender,firstvisit,duration,payment,notes)"."VALUES ('$currentDate','$mmbr_name', '$mmbr_phone','$mmbr_date','$mmbr_gender','$mmber_visit','$mmber_duration')";
+               $sql = "INSERT INTO history (nowdate, personalname,personalphone,birthdate,gender,firstvisit,duration)".
+               "VALUES ('$currentDate','$mmbr_name', '$mmbr_phone','$mmbr_date','$mmbr_gender','$mmber_visit','$mmber_duration')";
 
                // Execute the query
                if ($conn->query($sql) === TRUE) {
@@ -160,13 +161,13 @@ if(isset($_SESSION['user_id']))
         <label>Gender :</label>
         
         <label  style="color: black;">
-            <input type="radio" value="Male" name="mmbr_gender" required>
+            <input type="radio" value="1" name="mmbr_gender" required>
         male</label>
 
 
         
         <label style="color: black;">
-            <input type="radio" value="Female" name="mmbr_gender">
+            <input type="radio" value="0" name="mmbr_gender">
         female</label><br/><br/>
 
         
