@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2023 at 09:14 PM
+-- Generation Time: Dec 18, 2023 at 10:40 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `gymmngr`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `id` int(50) NOT NULL,
+  `nowdate` date NOT NULL,
+  `personalname` varchar(50) NOT NULL,
+  `personalphone` varchar(50) NOT NULL,
+  `birthdate` date NOT NULL,
+  `gender` int(2) NOT NULL,
+  `firstvisit` int(2) NOT NULL,
+  `duration` varchar(50) NOT NULL,
+  `payment` varchar(50) NOT NULL,
+  `notes` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='stores new enrollments here';
 
 -- --------------------------------------------------------
 
@@ -47,6 +66,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `personalname`, `permission`)
 --
 
 --
+-- Indexes for table `history`
+--
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -55,6 +80,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
