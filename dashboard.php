@@ -128,7 +128,7 @@ if(isset($_SESSION['user_id']))
 
     <button class="normalbutton">New enrollment</button><br/>
     <button class="normalbutton">Sales</button><br/>
-    <button class="normalbutton">History</button><br/>
+    <button class="normalbutton" onclick="update_page('screen3')">History</button><br/>
     <button class="normalbutton">Check Status</button><br/>
     <button class="normalbutton">Settings</button><br/>
 
@@ -226,8 +226,84 @@ else
 }
 }
 shows_me(<?php echo $signed ? "0" : "1";?>);
+var pg1 = document.getElementById("screen1");
+var pg2 = document.getElementById("screen2");
+var pg3 = document.getElementById("screen3");
+var pg4 = document.getElementById("screen4");
+var pg5 = document.getElementById("screen5");
 
+function update_page(rn)
+{
+    pg1.style.display="none";
+    pg2.style.display="none";
+    pg3.style.display="none";
+    pg4.style.display="none";
+    pg5.style.display="none";
+    document.getElementById(rn).style.display="block";
+    
+}
 </script>
+
+
+
+
+
+
+
+<script>
+
+function sayName(name) {
+  // Create XMLHttpRequest object
+  const xhr = new XMLHttpRequest();
+
+  // Open a POST request to the current page (assuming your PHP function is defined there)
+  xhr.open("POST", window.location.href);
+
+  // Set the Content-Type header to indicate JSON data
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  // Define the onload callback
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      // Parse the JSON response
+      const response = JSON.parse(xhr.responseText);
+
+      // Do something with the response (e.g., display it)
+      console.log(response.message); // Assuming your PHP function returns a JSON object with a "message" property
+    } else {
+      console.error("Error calling PHP function:", xhr.statusText);
+    }
+  };
+
+  // Define the onerror callback
+  xhr.onerror = function() {
+    console.error("Error sending Ajax request:", xhr.statusText);
+  };
+
+  // Prepare the data to send (name as JSON)
+  const data = JSON.stringify({ name });
+
+  // Send the request with the data
+  xhr.send(data);
+}
+
+    </script>
+
+
+
+
+    <?php
+
+function greet($name) {
+    return json_encode(["message" => "Hello, $name!"]);
+  }
+  
+  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name = $_POST["name"];
+    $response = greet($name);
+    echo $response;
+  }
+?>
 
     </body>
 </html>
