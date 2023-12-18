@@ -207,7 +207,10 @@ if(isset($_SESSION['user_id']))
 
 <div id="screen3" style="display: none;text-align:center">
 <table border="1px" style="margin: auto;" id="ourtable">
-            <tr>
+
+            
+<!-- 
+                <tr>
                 <td>Create Date :</td>
                 <td>Member Name :</td>
                 <td>Member Phone :</td>
@@ -217,8 +220,8 @@ if(isset($_SESSION['user_id']))
                 <td>Duration :</td>
                 <td>Notes :</td>
             </tr>
-            
-<!-- 
+
+
     this is just test stamp
             <tr class="information">
                 <td class="tdcreatedate">2020-12-24</td>
@@ -294,9 +297,9 @@ function showOPTION(rn)
         success: 
         function(response) 
         { 
+            var currenttitletable="<tr><td>Create Date :</td><td>Member Name :</td><td>Member Phone :</td><td>Birthdate :</td><td>Gender :</td><td>First Visit?</td><td>Duration :</td><td>Notes :</td></tr>";
             
-            
-            document.getElementById("ourtable").innerHTML+= (response);
+            document.getElementById("ourtable").innerHTML= (currenttitletable+response);
         
         
         
