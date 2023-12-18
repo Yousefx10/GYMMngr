@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2023 at 10:40 AM
+-- Generation Time: Dec 18, 2023 at 11:13 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -37,7 +37,8 @@ CREATE TABLE `history` (
   `firstvisit` int(2) NOT NULL,
   `duration` varchar(50) NOT NULL,
   `payment` varchar(50) NOT NULL,
-  `notes` varchar(200) NOT NULL
+  `notes` varchar(200) NOT NULL,
+  `user` varchar(50) NOT NULL COMMENT 'the user who have added this details'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='stores new enrollments here';
 
 -- --------------------------------------------------------
