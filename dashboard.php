@@ -108,6 +108,7 @@ if(isset($_SESSION['user_id']))
 
            .information td{padding:15px}
            .tdclick{color: blue;cursor: pointer;}
+           .tdcreatedate{background-color: #736969;color: white;}
         </style>
     </head>
     <body>
@@ -205,7 +206,7 @@ if(isset($_SESSION['user_id']))
 
 
 <div id="screen3" style="display: none;text-align:center">
-<table border="1px" style="margin: auto;">
+<table border="1px" style="margin: auto;" id="ourtable">
             <tr>
                 <td>Create Date :</td>
                 <td>Member Name :</td>
@@ -216,9 +217,11 @@ if(isset($_SESSION['user_id']))
                 <td>Duration :</td>
                 <td>Notes :</td>
             </tr>
-
+            
+<!-- 
+    this is just test stamp
             <tr class="information">
-                <td>2020-12-24</td>
+                <td class="tdcreatedate">2020-12-24</td>
                 <td>Test NameTest</td>
                 <td>00112233</td>
                 <td>1999-04-13</td>
@@ -227,6 +230,9 @@ if(isset($_SESSION['user_id']))
                 <td>Week</td>
                 <td class="tdclick" onclick="shownotes(this)" data-note="hello world">SHOW</td>
             </tr>
+
+ -->
+
 </table>
 </div>
 
@@ -280,7 +286,7 @@ function showOPTION(rn)
     if(rn=="screen3")
     {
         //$.ajax({ url: 'dashboard.php?doit=true?screen=history' });
-        return;
+        //return;
         $.ajax({
         url: 'run.php',
         type: 'post',
@@ -290,7 +296,7 @@ function showOPTION(rn)
         { 
             
             
-            document.getElementById("screen3").innerHTML= (response);
+            document.getElementById("ourtable").innerHTML+= (response);
         
         
         
