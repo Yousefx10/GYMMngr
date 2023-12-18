@@ -22,8 +22,8 @@ if(isset($_SESSION['user_id']))
                 $mmbr_phone = $_POST['mmbr_phone'];
                 $mmbr_date = $_POST['mmbr_date'];
                 $mmbr_gender = $_POST['mmbr_gender'];
-                $mmber_visit = $_POST['mmber_visit'];
-                $mmber_duration = $_POST['mmber_duration'];
+                $mmber_visit = $_POST['mmbr_visit'];
+                $mmber_duration = $_POST['mmbr_duration'];
 
 
 
@@ -31,7 +31,7 @@ if(isset($_SESSION['user_id']))
                include "connect.php";
       
                $currentDate = date("Y-m-d H:i:s");
-                $sql = "INSERT INTO history (nowdate, personalname,personalphone,birthdate,gender,firstvisit,duration,payment,notes)"."VALUES ('$currentDate','$mmbr_name', '$mmbr_phone','$mmbr_date','$mmbr_gender','$mmber_visit','$mmber_duration')";
+               $sql = "INSERT INTO history (nowdate, personalname,personalphone,birthdate,gender,firstvisit,duration,payment,notes)"."VALUES ('$currentDate','$mmbr_name', '$mmbr_phone','$mmbr_date','$mmbr_gender','$mmber_visit','$mmber_duration')";
 
                // Execute the query
                if ($conn->query($sql) === TRUE) {
