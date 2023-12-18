@@ -105,6 +105,9 @@ if(isset($_SESSION['user_id']))
             form input {display: block;margin: 5px;width: 300px;padding: 10px;}
             form input[type=radio] {display: inline;width: auto;}
             form label{color:blue;padding: 10px;}
+
+           .information td{padding:15px}
+           .tdclick{color: blue;cursor: pointer;}
         </style>
     </head>
     <body>
@@ -199,7 +202,35 @@ if(isset($_SESSION['user_id']))
     </form>
 </div>
 <div id="screen2" style="display: none;"></div>
-<div id="screen3" style="display: none;"></div>
+
+
+<div id="screen3" style="display: none;text-align:center">
+<table border="1px" style="margin: auto;">
+            <tr>
+                <td>Create Date :</td>
+                <td>Member Name :</td>
+                <td>Member Phone :</td>
+                <td>Birthdate :</td>
+                <td>Gender :</td>
+                <td>First Visit?</td>
+                <td>Duration :</td>
+                <td>Notes :</td>
+            </tr>
+
+            <tr class="information">
+                <td>2020-12-24</td>
+                <td>Test NameTest</td>
+                <td>00112233</td>
+                <td>1999-04-13</td>
+                <td>Male</td>
+                <td>Yes</td>
+                <td>Week</td>
+                <td class="tdclick" onclick="shownotes(this)" data-note="hello world">SHOW</td>
+            </tr>
+</table>
+</div>
+
+
 <div id="screen4" style="display: none;"></div>
 <div id="screen5" style="display: none;"></div>
 
@@ -268,6 +299,12 @@ function showOPTION(rn)
 
 
     }
+}
+
+
+function shownotes(notess)
+{
+    alert(notess.getAttribute('data-note'));
 }
 </script>
 
