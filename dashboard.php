@@ -109,6 +109,8 @@ if(isset($_SESSION['user_id']))
            .information td{padding:15px}
            .tdclick{color: blue;cursor: pointer;}
            .tdcreatedate{background-color: #736969;color: white;}
+
+           #screen5 label input{width: 30px;}
         </style>
     </head>
     <body>
@@ -134,7 +136,7 @@ if(isset($_SESSION['user_id']))
     <button class="normalbutton">Sales</button><br/>
     <button class="normalbutton" onclick="update_page('screen3');showOPTION('screen3');">History</button><br/>
     <button class="normalbutton">Check Status</button><br/>
-    <button class="normalbutton">Settings</button><br/>
+    <button class="normalbutton" onclick="update_page('screen5');">Settings</button><br/>
 
     </div>
             <!--right side end-->
@@ -241,7 +243,49 @@ if(isset($_SESSION['user_id']))
 
 
 <div id="screen4" style="display: none;"></div>
-<div id="screen5" style="display: none;"></div>
+<div id="screen5" style="display: none;">
+<p>Welcome To Settings Area</p>
+<hr/>
+
+<p>Prices :</p>
+<label>
+    Daily Price :
+    <input type="text" maxlength="4"/>
+</label>
+
+<label>
+    Weekly Price :
+    <input type="text" maxlength="4"/>
+</label>
+
+<label>
+    Monthly Price :
+    <input type="text" maxlength="4"/>
+</label>
+
+<label>Currency :
+<select>
+    <option selected disabled require></option>
+    <option>EGP</option>
+    <option>SAR</option>
+    <option>GBP</option>
+    <option>USD</option>
+    <option>EUR</option>
+</select>
+</label>
+<hr/>
+
+<p>Enable VAT?</p>
+<label>
+YES
+<input type="radio"/>
+</label>
+<label>
+NO
+<input type="radio"/>
+</label>
+<hr/>
+</div>
 
 
     </div>
