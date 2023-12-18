@@ -30,33 +30,19 @@ if(isset($_SESSION['user_id']))
 
                include "connect.php";
       
-                      // Check username existence
-                      $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-      
-                      //s for string, the "?" symbol to check with variable in next line code.
-                      $stmt->bind_param("s", $username);
-                      $stmt->execute();
-                      $result = $stmt->get_result();
-             
-              if ($result->num_rows === 0) {die("Invalid username!");}
+               $currentDate = date("Y-m-d H:i:s");
+                $sql = "INSERT INTO history (nowdate, personalname,personalphone,birthdate,gender,firstvisit,duration,payment,notes)"."VALUES ('$currentDate','$mmbr_name', '$mmbr_phone','$mmbr_date','$mmbr_gender','$mmber_visit','$mmber_duration')";
+
+               // Execute the query
+               if ($conn->query($sql) === TRUE) {
+                   echo "New record created successfully!";
+               } else {
+                   echo "Error: " . $conn->error;
+               }
                
-      
-              
-                      // Fetch user data and verify password
-                      $user = $result->fetch_assoc();
-      
-                      if ($password !== $user['password']) {
-                          die("Invalid password!");
-                        }
-      
-      
-                      //Login successful
-                      session_start();
-                     $_SESSION['user_id'] = $user['id']; // Store user ID in session
-                     header("Location: dashboard.php"); // Redirect to protected page
-                     $conn->close();
-
-
+               // Close connection
+               $conn->close();
+               
 
 
 
@@ -133,7 +119,7 @@ if(isset($_SESSION['user_id']))
 
 
             <!--right side start-->
-    <div style="text-align:center;float: right;border:2px dashed #736969;height:80vh;width:27%">
+    <div style="text-align:center;float: right;border:2px dashed #736969;height:85vh;width:27%">
     <p class="paraback">Right Side</p>
     <hr class="hrline"/>
 
@@ -155,7 +141,7 @@ if(isset($_SESSION['user_id']))
 
 
             <!--left side start-->
-    <div style="float: left;border:1px solid #000;height:80vh;width:67%">
+    <div style="float: left;border:1px solid #000;height:85vh;width:67%">
     <p class="paraback" style="text-align: center;">Left Side</p>
     <hr class="hrline"/>
 
@@ -187,16 +173,16 @@ if(isset($_SESSION['user_id']))
         <label>First Time?</label>
         <select name="mmbr_visit" required>
             <option selected disabled hidden></option>
-            <option>YES</option>
-            <option>NO</option>
+            <option value="1">YES</option>
+            <option value="0">NO</option>
         </select><br/><br/>
 
         <label>Duration</label>
         <select name="mmbr_duration" required>
             <option selected disabled hidden></option>
-            <option>Day</option>
-            <option>Week</option>
-            <option>Month</option>
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="month">Month</option>
         </select><br/><br/>
 
 
