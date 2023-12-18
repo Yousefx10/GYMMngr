@@ -122,7 +122,7 @@ if(isset($_SESSION['user_id']))
 
 
             <!--right side start-->
-    <div style="text-align:center;float: right;border:2px dashed #736969;height:85vh;width:27%">
+    <div style="overflow:auto;text-align:center;float: right;border:2px dashed #736969;height:85vh;width:27%">
     <p class="paraback">Right Side</p>
     <hr class="hrline"/>
 
