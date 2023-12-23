@@ -136,7 +136,7 @@ if(isset($_SESSION['user_id']))
     <button class="normalbutton">Sales</button><br/>
     <button class="normalbutton" onclick="update_page('screen3');showOPTION('screen3');">History</button><br/>
     <button class="normalbutton">Check Status</button><br/>
-    <button class="normalbutton" onclick="update_page('screen5');">Settings</button><br/>
+    <button class="normalbutton" onclick="update_page('screen5');showOPTION('screen5');">Settings</button><br/>
 
     </div>
             <!--right side end-->
@@ -357,12 +357,23 @@ function showOPTION(rn)
             
             document.getElementById("ourtable").innerHTML= (currenttitletable+response);
         
-        
-        
-        }
-    });
+        }});
 
 
+    }
+    else if (rn=="screen5")
+    {
+        $.ajax({
+        url: 'run.php',
+        type: 'post',
+        data: { "showsettings": "1"},
+        success: 
+        function(response) 
+        { 
+            
+            
+            console.log(response);
+        }});
     }
 }
 

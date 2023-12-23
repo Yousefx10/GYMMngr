@@ -40,10 +40,23 @@ $sql = "SELECT * FROM history"; // Select all columns
   echo $currentrow;
     }
     
-
-
-
-
-
     
+}
+else if (isset($_POST['showsettings'])) {
+  include 'connect.php';
+  $sql = "SELECT * FROM settings"; // Select all columns
+
+  $result = mysqli_query($conn, $sql);
+  while($row = mysqli_fetch_assoc($result)) {
+
+    // Access data using column names as array keys
+    $currency = $row["currency"];
+    $daily = $row["daily"];
+    $weekly = $row["weekly"];
+    $monthly = $row["monthly"];
+    $vat = $row["vat"];
+//continue on this code to make settings shows on html from sql
+    echo $daily.",".$weekly.",".$monthly.",".$currency.",".$vat;
+    
+}
 }
