@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2023 at 04:31 PM
+-- Generation Time: Dec 23, 2023 at 01:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -49,7 +49,7 @@ CREATE TABLE `history` (
 
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
-  `Currency` varchar(11) NOT NULL,
+  `currency` varchar(11) NOT NULL,
   `daily` int(11) NOT NULL,
   `weekly` int(11) NOT NULL,
   `monthly` int(11) NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `settings` (
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `Currency`, `daily`, `weekly`, `monthly`, `vat`) VALUES
+INSERT INTO `settings` (`id`, `currency`, `daily`, `weekly`, `monthly`, `vat`) VALUES
 (1, 'EGP', 0, 0, 0, '0,0');
 
 -- --------------------------------------------------------
