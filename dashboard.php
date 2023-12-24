@@ -279,13 +279,13 @@ if(isset($_SESSION['user_id']))
 <hr/>
 
 <p>Enable VAT?</p>
-<label>
+<label onclick="changevat(1);">
 YES
-<input type="radio" id="inp5"/>
+<input type="radio" id="inp5" name="vatstatus"/>
 </label>
-<label>
+<label  onclick="changevat(0);">
 NO
-<input type="radio" id="inp6"/>
+<input type="radio" id="inp6" name="vatstatus"/>
 </label>
 
 <label>
@@ -383,10 +383,6 @@ function showOPTION(rn)
             document.getElementById("inp7").value=0;
             document.getElementById("inp7").disabled = true;
 
-
-            
-
-
            }
             
         }});
@@ -397,6 +393,21 @@ function showOPTION(rn)
 function shownotes(notess)
 {
     alert(notess.getAttribute('data-note'));
+}
+
+
+function changevat(yesorno)
+{
+    var inputyesorno = document.getElementById("inp7");
+    if(yesorno ==1)
+    {
+            inputyesorno.disabled = false;
+    }
+    else
+    {
+            inputyesorno.value=0;
+            inputyesorno.disabled = true;
+    }
 }
 </script>
 
