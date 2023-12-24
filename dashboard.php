@@ -13,10 +13,6 @@ if(isset($_SESSION['user_id']))
             if(isset($_POST['newenroll']))
             {
 
-
-
-
-
                 echo "saving is on process \n";
                 $mmbr_name = $_POST['mmbr_name'];
                 $mmbr_phone = $_POST['mmbr_phone'];
@@ -48,28 +44,43 @@ if(isset($_SESSION['user_id']))
                
 
 
+            }
+            else if(isset($_POST['updateme']))
+            {
+                $set_daily = $_POST['set_daily'];
+                $set_weekly = $_POST['set_weekly'];
+                $set_monthly = $_POST['set_monthly'];
 
+                $set_currency = $_POST['set_currency'];
 
+                $vatstatus = $_POST['vatstatus'];
+                $set_vat="0,0";
+                if($vatstatus=="YES")
+                {
+                    $set_vat = $_POST['set_vat'];
+                    //echo $set_vat;
+                    $set_vat="1,".$set_vat;
+                }
+                
 
+                // echo $set_daily;
+                // echo $set_weekly;
+                // echo $set_monthly;
 
+                // echo $set_currency;
+                // echo $vatstatus;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                include "connect.php";
+                $sql = "UPDATE settings SET currency='$set_currency',daily='$set_daily',weekly='$set_weekly',monthly='$set_monthly',vat='$set_vat' WHERE id=1";
+               
+                if ($conn->query($sql) === TRUE) {
+                    echo "settings updated!";
+                } else {
+                    echo "Error: " . $conn->error;
+                }
+                               // Close connection
+               $conn->close();
+               
             }
         }
     }
@@ -247,27 +258,30 @@ if(isset($_SESSION['user_id']))
 <div id="screen5" style="display: none;">
 <p style="text-align: center;">Welcome To Settings Area</p>
 <hr/>
-<form>
+
+
+
+<form method="post" action="dashboard.php">
 
 
 <p>Prices :</p>
 <label>
     Daily Price :
-    <input type="number" max="5000" min="0" id="inp1"/>
+    <input type="number" max="5000" min="0" id="inp1" name="set_daily"/>
 </label>
 
 <label>
     Weekly Price :
-    <input type="number" max="5000" min="0" id="inp2"/>
+    <input type="number" max="5000" min="0" id="inp2" name="set_weekly"/>
 </label>
 
 <label>
     Monthly Price :
-    <input type="number" max="5000" min="0" id="inp3"/>
+    <input type="number" max="5000" min="0" id="inp3" name="set_monthly"/>
 </label>
 
 <label>Currency :
-<select id="inp4">
+<select id="inp4" name="set_currency">
     <option selected disabled require ></option>
     <option>EGP</option>
     <option>SAR</option>
@@ -281,21 +295,21 @@ if(isset($_SESSION['user_id']))
 <p>Enable VAT?</p>
 <label onclick="changevat(1);">
 YES
-<input type="radio" id="inp5" name="vatstatus"/>
+<input type="radio" id="inp5" name="vatstatus" value="YES"/>
 </label>
 <label  onclick="changevat(0);">
 NO
-<input type="radio" id="inp6" name="vatstatus"/>
+<input type="radio" id="inp6" name="vatstatus" value="NO"/>
 </label>
 
 <label>
     Vat Value :
-    <input type="number" max="100" min="0" id="inp7"/>
+    <input type="number" max="100" min="0" id="inp7" name="set_vat"/>
 </label>
 <hr/>
 
 
-<input type="submit" value="Update Settings"/>
+<input type="submit" value="Update Settings" name="updateme"/>
 </form>
 </div>
 
@@ -382,7 +396,13 @@ function showOPTION(rn)
             document.getElementById("inp6").checked = true;
             document.getElementById("inp7").value=0;
             document.getElementById("inp7").disabled = true;
-
+           }
+           else
+           {
+            document.getElementById("inp5").checked = true;
+            document.getElementById("inp6").checked = false;
+            document.getElementById("inp7").value=allvalues[5];
+            document.getElementById("inp7").disabled = false;
            }
             
         }});
