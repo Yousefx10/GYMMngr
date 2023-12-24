@@ -253,22 +253,22 @@ if(isset($_SESSION['user_id']))
 <p>Prices :</p>
 <label>
     Daily Price :
-    <input type="number" max="5000" min="0"/>
+    <input type="number" max="5000" min="0" id="inp1"/>
 </label>
 
 <label>
     Weekly Price :
-    <input type="number" max="5000" min="0"/>
+    <input type="number" max="5000" min="0" id="inp2"/>
 </label>
 
 <label>
     Monthly Price :
-    <input type="number" max="5000" min="0"/>
+    <input type="number" max="5000" min="0" id="inp3"/>
 </label>
 
 <label>Currency :
-<select>
-    <option selected disabled require></option>
+<select id="inp4">
+    <option selected disabled require ></option>
     <option>EGP</option>
     <option>SAR</option>
     <option>GBP</option>
@@ -281,16 +281,16 @@ if(isset($_SESSION['user_id']))
 <p>Enable VAT?</p>
 <label>
 YES
-<input type="radio"/>
+<input type="radio" id="inp5"/>
 </label>
 <label>
 NO
-<input type="radio"/>
+<input type="radio" id="inp6"/>
 </label>
 
 <label>
     Vat Value :
-    <input type="number" max="100" min="0"/>
+    <input type="number" max="100" min="0" id="inp7"/>
 </label>
 <hr/>
 
@@ -371,8 +371,24 @@ function showOPTION(rn)
         function(response) 
         { 
             
+            var allvalues = response.split(",");
+            document.getElementById("inp1").value=allvalues[0];
+            document.getElementById("inp2").value=allvalues[1];
+            document.getElementById("inp3").value=allvalues[2];
+            document.getElementById("inp4").value=allvalues[3];
+           if(allvalues[4]==0)
+           {
+            document.getElementById("inp5").checked = false;
+            document.getElementById("inp6").checked = true;
+            document.getElementById("inp7").value=0;
+            document.getElementById("inp7").disabled = true;
+
+
             
-            console.log(response);
+
+
+           }
+            
         }});
     }
 }
